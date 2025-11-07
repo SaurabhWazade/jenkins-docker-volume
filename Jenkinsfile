@@ -4,7 +4,7 @@ pipeline {
   stages {
     stage ('empty working dir') {
       steps {
-        sh "rm -rf* /root/.jenkins/workspace/"
+        sh "rm -rf * /root/.jenkins/workspace/"
       }
     }
     stage ('bind mount') {
