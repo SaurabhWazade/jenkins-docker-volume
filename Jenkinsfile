@@ -4,8 +4,8 @@ pipeline {
   stages {
     stage ('bind mount') {
       steps {
-        sh """rm -rf /root/.jenkins/workspace/*
-        docker run -itdp 90:80 -v /root/.jenkins/workspace/test2/:/usr/local/apache2/htdocs/ --name s2 httpd"""
+        sh '''docker run -itdp 90:80 -v /root/.jenkins/workspace/test2/:/usr/local/apache2/htdocs/ --name s2 httpd
+        docker exec s2 sh -c "chmod 777 /usr/local/apache2/htdocs/index.html"'''
       }
     }
   }
