@@ -4,7 +4,7 @@ pipeline {
   stages {
     stage ('clean dir') {
       steps {
-        sh "rm -rf /root/.jenkins/workspace/"
+        sh "rm -rf /root/.jenkins/workspace/test*"
       }
     }
     stage ('bind mount') {
