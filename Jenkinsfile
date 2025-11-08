@@ -2,19 +2,19 @@ pipeline {
   agent any
 
   stages {
-   
-    stage ('bind mount') {
+    stage ('one') {
       steps {
-        sh ''' 
-        docker run -itdp 80:80 -v /root/.jenkins/workspace/test1/:/usr/local/apache2/htdocs/ --name s1 httpd
-       docker exec s1 sh -c "[ -f /usr/local/apache2/htdocs/index.html ] && chmod 644 /usr/local/apache2/htdocs/index.html"
-'''
-      }
+        sh '''cp /root/.jenkins/workspace/test1/index.html /
+        docker run -dp 80:80 -v /:/use/local/apache2/htdocs/ --name s1 httpd
+        docker exec s1 sh -c "chmod -R 644 /usr/local/apache2/htdocs/index.html"'''
+        }
+      
     }
   }
   post {
     always {
-      sh "rm -rf *"
+     sh "rm -rf ${WORKSPACE}/*"
+ 
     }
   }
 }
